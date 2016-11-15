@@ -1,0 +1,10 @@
+- hosts: master
+  remote_user: root
+  roles:
+  - rabbitmq_master
+
+
+- hosts: slave
+  remote_user: root
+  roles:
+  - rabbitmq_slave

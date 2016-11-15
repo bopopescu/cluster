@@ -1,0 +1,15 @@
+- name: install epel-release
+  yum: name=epel-release state=latest
+- name: firewall disable
+  shell: iptables -F
+- name: install erlang
+  yum: name=erlang state=latest
+- name: install rabbitmq-server
+  yum: name=rabbitmq-server state=latest
+- name: copy erlang-cookie
+  copy: src=.erlang.cookie dest=/var/lib/rabbitmq/ owner=rabbitmq group=rabbitmq mode=0400
+- name: service
+  service: name=rabbitmq-server state=restarted
+- name: shell add 
+  shell: rabbitmqctl stop_app; rabbitmqctl reset; rabbitmqctl join_cluster rabbit@master; rabbitmqctl start_app
+
