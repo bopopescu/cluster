@@ -14,9 +14,10 @@ def fromFiletoDB(file):
     conn.close()
     file.close()
 
-
+fromFiletoDB("access.log")
 conn = mysql.connector.connect(user='log', password='1', database='log_query')
 cursor = conn.cursor()
 cursor.execute('')
 
-select * from data where functions REGEXP '(^common|data|dm|permission|wifi|configdevice|deviceconfig|sp)';
+# select * from data where functions REGEXP '(common|data|dm|permission|wifi|configdevice|deviceconfig|sp)';
+# select * from data where functions not in (select functions from data where functions regexp '^/(common|data|dm|permission|wifi|configdevice|deviceconfig|sp|index.html)');
